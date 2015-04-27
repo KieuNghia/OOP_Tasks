@@ -11,14 +11,7 @@ import java.util.List;
 public class Exe {
 
 
-    private static void sortList(List<String> phonenumbers, Comparator<String> caseInsensitiveOrder) {
-        Collections.sort(phonenumbers, String.CASE_INSENSITIVE_ORDER);
-    }
-
-
     public static void task_a(Phone[] array) { //a) сведения об абонентах, у которых время внутригородских разговоров превышает заданное;
-
-
 
 
         for (int i = 0; i < array.length; i++) {
@@ -45,14 +38,19 @@ public class Exe {
 
         }
     }
+    public static void printArray(Phone [] array){
+        for(int i = 0; i<array.length; i++){
+            System.out.println(array[i].toString());
+        }
+    }
 
 
     public static void main(String[] args) {
 
         Phone phone1 = new Phone(1, "Alex", "Rudkovsky", "Alexandrovich", "Kharkiv city", 19002, 321, 100, 200, 50);
         Phone phone2 = new Phone(2, "BAlex", "Rudkovsky", "Alexandrovich", "Kharkiv city", 19002, 321, 100, 200, 50);
-        Phone phone3 = new Phone(3, "CAlex", "Rudkovsky", "Alexandrovich", "Kharkiv city", 19002, 321, 100, 200, 50);
-        Phone phone4 = new Phone(4, "DAlex", "Rudkovsky", "Alexandrovich", "Kharkiv city", 19002, 321, 100, 200, 50);
+        Phone phone3 = new Phone(3, "DAlex", "Rudkovsky", "Alexandrovich", "Kharkiv city", 19002, 321, 100, 200, 50);
+        Phone phone4 = new Phone(4, "CAlex", "Rudkovsky", "Alexandrovich", "Kharkiv city", 19002, 321, 100, 200, 50);
         Phone phone5 = new Phone(5, "FAlex", "Rudkovsky", "Alexandrovich", "Kharkiv city", 191002, 321, 100, 200, 0);
 
 
@@ -64,23 +62,20 @@ public class Exe {
         task_b(array);
         System.out.println("---------------------");
 
-
-        List<String> phonenumbers = Arrays.asList(phone1.getLastName(), phone3.getLastName(), phone2.getLastName(), phone5.getLastName(), phone4.getLastName());
-        for (String phone : phonenumbers) {
-
-            System.out.println(phone.toString());
-
-        }
-
+        printArray(array);
         System.out.println("Sorting by name");
-        sortList(phonenumbers, String.CASE_INSENSITIVE_ORDER);
 
 
-        for (String phone : phonenumbers) {
+        Arrays.sort(array, new Comparator<Phone>() {
+            @Override
+            public int compare(Phone phone1, Phone phone2) {
 
-            System.out.println(phone.toString());
 
-        }
+                return phone1.getLastName().compareTo(phone2.getLastName());
+
+            }
+        });
+        printArray(array);
 
 
     }
