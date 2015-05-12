@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class TaxiStation {
     private String name;
     private List<Car> cars = new ArrayList<Car>();
+    private int count;
 
     public TaxiStation() {
         name = "Generic TaxiStation";
@@ -30,29 +31,24 @@ public class TaxiStation {
     }
 
     public boolean addCar(Car car) {
+
+        count++;
         return cars.add(car);
+
     }
 
     public void showCars() {
 
         System.out.println(this.getName() + " has");
         for (Car car : cars) {
-            System.out.println(car.toString());
+            System.out.println(car);
 
         }
 
 
     }
 
-    public int countPrice() {
-        int price = 0;
-        for (Car car : cars) {
-            price += car.getPrice();
-        }
-        return price;
 
-
-    }
 
     public void showBySpeed( int max) {
         System.out.println("Car with that speed characteristics max =["
@@ -60,7 +56,7 @@ public class TaxiStation {
         for (Car car : cars) {
             int speed = car.getMaxSpeed();
             if ( max < speed) {
-                System.out.println(car.toString());
+                System.out.println(car);
 
             }
         }

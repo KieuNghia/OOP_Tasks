@@ -15,14 +15,14 @@ public abstract class Car {
     protected Car(String manufacturer, String modelName, int year, int price, int fuelConsumption, int acceleration, int maxSpeed) {
         this.manufacturer = manufacturer;
         this.modelName = modelName;
-        this.year = year;
-        this.price = price;
-        this.fuelConsumption = fuelConsumption;
-        this.acceleration = acceleration;
-        this.maxSpeed = maxSpeed;
+        setYear(year);
+        setPrice(price);
+        setFuelConsumption(fuelConsumption);
+        setAcceleration(acceleration);
+        setMaxSpeed(maxSpeed);
     }
 
-    protected Car(){
+    protected Car(String manufacturer, String modelName, int year, int fuelConsumption, int acceleration, int maxSpeed){
         this.manufacturer = "Generic";
         this.modelName = "Generic";
         this.year = 2000;
@@ -54,15 +54,34 @@ public abstract class Car {
     }
 
     public void setYear(int year) {
-        this.year = year;
+        try{
+
+        if(year<1950)
+            throw new IllegalArgumentException();
+        else
+            this.year = year;
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("Wrong year");
+        }
     }
+
 
     public int getPrice() {
         return price;
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        try{
+
+            if(price<=0)
+                throw new IllegalArgumentException();
+            else
+                this.price = price;
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("Price must be >0");
+        }
     }
 
     public int getFuelConsumption() {
@@ -70,15 +89,34 @@ public abstract class Car {
     }
 
     public void setFuelConsumption(int fuelConsumption) {
-        this.fuelConsumption = fuelConsumption;
-    }
+
+        try{
+
+            if(fuelConsumption<3)
+                throw new IllegalArgumentException();
+            else
+                this.fuelConsumption = fuelConsumption;
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("Fuel consumption must be >3");
+        }    }
 
     public int getAcceleration() {
         return acceleration;
     }
 
     public void setAcceleration(int acceleration) {
-        this.acceleration = acceleration;
+
+        try{
+
+            if(acceleration<=0)
+                throw new IllegalArgumentException();
+            else
+                this.acceleration = acceleration;
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("acceleration must be >0");
+        }
     }
 
     public int getMaxSpeed() {
@@ -86,21 +124,22 @@ public abstract class Car {
     }
 
     public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
+
+        try{
+
+            if(maxSpeed<=0)
+                throw new IllegalArgumentException();
+            else
+                this.maxSpeed = maxSpeed;
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("Max speeed must be >0");
+        }
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "maxSpeed=" + maxSpeed +
-                ", acceleration=" + acceleration +
-                ", fuelConsumption=" + fuelConsumption +
-                ", price=" + price +
-                ", year='" + year + '\'' +
-                ", modelName='" + modelName + '\'' +
-                ", manufacturer='" + manufacturer + '\'' +
-                '}';
-    }
+
+    public abstract String toString();
+
 
 
 

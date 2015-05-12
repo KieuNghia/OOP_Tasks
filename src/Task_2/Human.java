@@ -24,27 +24,12 @@ public abstract class Human implements BeingHuman {
 
     }
 
-    public boolean isInteger(String input) {
-        try {
-            Integer.parseInt(input);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
     @Override
     public String toString() {
-        String sexString;
-        if (this.sex == false) {
-            sexString = "Woman";
-        } else {
-            sexString = "Man";
-        }
-
 
         return "Human{" +
-                "sex=" + sexString +
+                "sex=" + this.getClass().toString() +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", weight=" + weight +
@@ -65,11 +50,14 @@ public abstract class Human implements BeingHuman {
     }
 
     public void setName(String name) {
-        if (isInteger(name) == false) {
-            this.name = name;
-        } else {
-
-            throw new IllegalArgumentException("wrong name format, not string");
+        try {
+            if (name.matches("[0-9]+") && name.length() > 2) {
+                this.name = name;
+            } else {
+                throw new IllegalArgumentException();
+            }}
+        catch (IllegalArgumentException e){
+            System.out.println("Wrong surname format, not string");
         }
 
     }
@@ -79,14 +67,17 @@ public abstract class Human implements BeingHuman {
     }
 
     public void setSurname(String surname) {
-
-        if (isInteger(surname) == false) {
-            this.surname = surname;
-        } else {
-            throw new IllegalArgumentException("Wrong surname format, not string");
+        try {
+            if (surname.matches("[0-9]+") && surname.length() > 2) {
+                this.surname = surname;
+            } else {
+                throw new IllegalArgumentException();
+            }}
+        catch (IllegalArgumentException e){
+            System.out.println("Wrong surname format, not string");
         }
 
-    }
+        }
 
     public float getHeight() {
         return height;
@@ -161,23 +152,20 @@ public abstract class Human implements BeingHuman {
     @Override
     public Human relationship(Human human) {
         if ((this.speak(human) == true && this.endure(human) == true && this.spendTime(human) == true && this.sex != human.sex)) {
-            Woman woman;
-            if (this.sex == false) {
-                woman = (Woman) this;
 
+            String sex = human.getClass().toString();
+
+            Human woman;
+            if (sex.equals("Man")) {
+                return ((Woman) this).makeChildren(name, human);
             } else {
-
-                woman = (Woman) human;
+                return ((Woman) human).makeChildren(name, this);
 
 
             }
-            Human child = woman.makeChildren(name, human);
-            return child;
-        } else
-            return null;
 
 
+        }
+        return null;
     }
-
-
 }

@@ -1,17 +1,14 @@
 package Task_1;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by Kuanh_Nhkhiia_Kiieu on 4/24/2015.
  */
-class Shop<T extends PC> {
+class Shop {
     private String name;
     private PC[] pcArray;
-    private int pointer;
+    private int counter;
 
     public Shop(String name) {
         this.name = name;
@@ -28,25 +25,23 @@ class Shop<T extends PC> {
 
     Shop(int size){
         pcArray = new PC[size];
-        pointer = 0;
+
     }
 
 
-    public void add(T pc) {
-        if (pointer < pcArray.length) {
+    public void add(PC pc) {
+        if (counter < pcArray.length) {
 
-            pcArray[pointer] = pc;
-            pointer++;
+            pcArray[counter] = pc;
+            counter++;
 
         }
         else{
             PC[] temp = new PC[pcArray.length * 2];
-            int i;
-            int j;
-            for(i = 0; i<pcArray.length; i++ ){
-                temp[i] = pcArray[i];
-            }
-            temp[i] = pc;
+            System.arraycopy(pcArray,0,temp,0,pcArray.length);
+
+            temp[counter] = pc;
+            counter++;
             pcArray = temp;
 
         }
@@ -54,15 +49,15 @@ class Shop<T extends PC> {
 
     }
 
-    public void showAll() {
+    public void showAllPCs() {
         System.out.println(this.getName() + " has ");
-        for (int i = 0; i < pointer; i++) {
-            System.out.println(pcArray[i].toString());
+        for (int i = 0; i < counter; i++) {
+            System.out.println(pcArray[i]);
         }
     }
 
-    public int count() {
-      return pointer;
+    public int countAllPCs() {
+      return counter;
 
     }
 
@@ -72,7 +67,7 @@ class Shop<T extends PC> {
     }
 
     public void sortByprice() {
-        Arrays.sort(pcArray, 0, pointer);    }
+        Arrays.sort(pcArray, 0, counter);    }
 
 
 }

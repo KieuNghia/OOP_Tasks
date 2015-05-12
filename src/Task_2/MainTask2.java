@@ -40,14 +40,16 @@ public class MainTask2 {
 //        System.out.println(woman.toString());
         Man man2 = new Man(true, "Vania", "Vania", 180, 50);           //
         Woman woman2 = new Woman(true, "Vania", "Vania", 150, 50);
-        System.out.println(man2.toString());
-        System.out.println(woman2.toString());
+        System.out.println(man2);
+        System.out.println(woman2);
 
 
         Human child = man2.relationship(woman2);
         if (child == null) {
             System.out.println("Razbezalish");
         } else System.out.println(child.toString());
+
+
 
         /*
         Last console results

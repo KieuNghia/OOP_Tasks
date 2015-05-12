@@ -14,7 +14,7 @@ public class Main {
         Laptop acer = new Laptop("Acer", 700, "Intel i7", 4, 8, "DRR3", 2033, "Nvidia GF 960m", 2, 500, 13.3, "IPS", 4000);
         Laptop apple = new Laptop("Apple Air", 700, "Intel i5", 2, 8, "DRR3", 1133, "Intel HD4000", 1, 500, 13.3, "IPS", 4000);
 
-        Shop <PC>  PCshop = new Shop<PC>(10);
+        Shop PCshop = new Shop(4);
         PCshop.setName("PCSHOP");
         PCshop.add(alienware);
         PCshop.add(alienware2);
@@ -24,10 +24,10 @@ public class Main {
         PCshop.add(apple);
 
 
-        PCshop.showAll();
+        PCshop.showAllPCs();
         System.out.println("-------SORTING---------------");
         PCshop.sortByprice();
-        PCshop.showAll();
+        PCshop.showAllPCs();
 
         System.out.println("-----------------------------");
         System.out.println("Average price for all desktop PCs");

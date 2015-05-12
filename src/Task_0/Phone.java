@@ -131,7 +131,7 @@ public class Phone {
                 ", credit= " + credit +
                 ", interCity= " + interCity +
                 ", outerCity= " + outerCity +
-                '}';
+                "}\n";
     }
 
 
